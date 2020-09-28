@@ -1,0 +1,3 @@
+from calib.window.mainWinow import Ui_MainWindow
+from calib.window.weightParamDialog import Ui_weightParamDialog
+from calib.window.voltageCurrentWeightParamDialog import Ui_voltageCurrentWeightParamDialog
