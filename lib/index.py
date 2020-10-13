@@ -1,6 +1,9 @@
 import serial.tools.list_ports as list_ports
 import serial
 import struct
+# import sys, os
+# if hasattr(sys, 'frozen'):
+#     os.environ['PATH'] = sys._MEIPASS + ";" + os.environ['PATH']
 from PyQt5.QtWidgets import QMessageBox
 import inspect
 import ctypes
@@ -76,6 +79,17 @@ def trans_floats_to_bytes(array) -> list:
         d.extend(trans_float_to_bytes(i))
     return d
 
+
+
+def int4_to_float(array) -> float:
+    data = bytearray()
+    if len(array) < 4:
+        return False
+    for i in range(4):
+        if array[i] >= 256:
+            return False
+        data.append(array[i])
+    return struct.unpack("!f", data)[0]
 
 def send_frame(frame, mainWindow):
     try:

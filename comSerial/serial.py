@@ -1,6 +1,10 @@
 import serial
+import sys, os
+if hasattr(sys, 'frozen'):
+    os.environ['PATH'] = sys._MEIPASS + ";" + os.environ['PATH']
 from PyQt5.QtGui import QTextCursor
-from calib.lib.index import listPortName, trans_to_16
+from PyQt5 import QtWidgets
+from calib.lib.index import listPortName, trans_to_16, int4_to_float
 import threading
 from time import sleep
 
@@ -28,20 +32,39 @@ def dealData(com, data):
         if frame_[-1] != 67:
             i = i + 1
             continue
-        text = com.parent.frameTextEdit.toPlainText()
-        if len(text) > 5000:
-            com.parent.frameTextEdit.setText('')
+        # text = com.parent.frameTextEdit.toPlainText()
+        # print(len(text))
+        # if len(text) > 4000:
+        #     com.parent.frameTextEdit.setText("")
         com.recode('rx', frame_)
         eventMaster(com, frame_)
         i = i + length
-
     com.container = com.container[i:]
 
 
 def eventMaster(com, frame):
     if frame[3] == 0 or frame[3] == 0x0f:
         deal00Frame(com, frame)
-    print(trans_to_16(frame))
+    elif frame[3] == 16:
+        for a in range(4):
+            if a == 3:
+                for i in range(11):
+                    row = i
+                    if i >= 3:
+                        row = i +1
+                    updateTable(com, row+2, 0, frame, (i + 19) * 4)
+            else:
+                for i in range(6):
+                    updateTable(com, i, a+1, frame, ((a*6)+ i+ 1)*4)
+    print(str(trans_to_16(frame)))
+
+
+
+def updateTable(com, row, line, frame, sub):
+    data = int4_to_float([frame[sub +3], frame[sub + 2], frame[sub + 1], frame[sub]])
+    data = round(data, 5)
+    com.parent.measuredValueTableWidget2.setItem(row, line, QtWidgets.QTableWidgetItem(str(data)))
+    com.parent.measuredValueTableWidget2.viewport().update()
 
 
 def deal00Frame(com, frame):

@@ -1,3 +1,6 @@
+import sys, os
+if hasattr(sys, 'frozen'):
+    os.environ['PATH'] = sys._MEIPASS + ";" + os.environ['PATH']
 from PyQt5 import QtWidgets
 from calib.component import HocCombobox, HocPushButton, My_WeightParamDialog, My_voltageCurrentWeightParamDialog
 import sys
@@ -54,6 +57,7 @@ class My_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.Com.Exit()
         sleep(1)
         event.accept()
+
 
 
 if __name__ == '__main__':
