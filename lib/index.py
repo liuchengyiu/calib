@@ -1,9 +1,6 @@
 import serial.tools.list_ports as list_ports
 import serial
 import struct
-# import sys, os
-# if hasattr(sys, 'frozen'):
-#     os.environ['PATH'] = sys._MEIPASS + ";" + os.environ['PATH']
 from PyQt5.QtWidgets import QMessageBox
 import inspect
 import ctypes
@@ -113,3 +110,85 @@ def _async_raise(tid, exctype):
         # and you should call it again with exc=NULL to revert the effect"""
         ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, None)
         raise SystemError("PyThreadState_SetAsyncExc failed")
+
+def two_to_10(bate: int) -> int:
+    bate = int(bin(bate).replace("0b", ""));
+    return bate
+
+def two_to_16(bate: int) -> str:
+    bate = hex(int(str(bate),2)).replace("0x", "");
+    if len(bate) == 1:
+        bate = "0"+ bate
+    return bate
+
+def twoBcd_to_16(bate: str) -> str:
+    bate_high= bate[:4];
+    bate_low = bate[4:];
+    bate= hex(int(bate_high, 2)).replace("0x", "")+ hex(int(bate_low, 2)).replace("0x", "");
+    bate= ten_to_16(51+ sixteen_to_10(bate));
+    if len(bate) == 1:
+        bate = "0"+ bate
+    return bate
+
+def sixteen_to_10(bate: str) -> int:
+    if bate == "":
+        return 0
+    bate = int(bate, 16);
+    return bate
+def ten_to_16(bate: int) -> str:
+    bate= hex(bate).replace("0x", "");
+    if len(bate) == 1:
+        bate = "0" + bate
+    return bate
+
+def ten_to_2(bate: int) -> str:
+    bate = bin(bate).replace("0b", "");
+    for i in range(3):
+        if len(bate) <4:
+            bate= "0"+ bate;
+    return bate
+
+def int4_to_float(array) -> float:
+    data = bytearray()
+    if len(array) < 4:
+        return False
+    for i in range(4):
+        if array[i] >= 256:
+            return False
+        data.append(array[i])
+    return struct.unpack("!f", data)[0]
+
+def batebcd_to_int(data: str) -> dict:
+    if data == False:
+        return False
+    send_jc_dict = {}
+    data_list = data.split(" ")[3:-2]
+    data_value = ""
+    data_type = ""
+    for i in range(len(data_list)):
+        if data_list[i] == "33":
+            continue
+        if i == 0 or i % 9 == 0:
+            data_value = ''
+            data_type = ten_to_16(sixteen_to_10(data_list[i]) - sixteen_to_10("33"))
+            continue
+        else:
+            data_int = sixteen_to_10(data_list[i]) - sixteen_to_10("63")
+            if data_int == -2:
+                data_int = '.'
+            if data_int == -3:
+                data_int = '-'
+            data_value = data_value + str(data_int)
+        if i % 8 != 0:
+            send_jc_dict[data_type] = data_value
+    return send_jc_dict
+
+def jcread_to_int(data: str) -> list:
+    data= data.split(" ")
+    voltage_current = []
+    for index, values in enumerate(data):
+        data[index]= sixteen_to_10(values)
+    if data[3] == 144:
+        for i in range(29):
+            voltage_current.append(round(int4_to_float([data[i * 4 + 7], data[i * 4 + 6], data[i * 4 + 5], data[i * 4 + 4]]), 5))
+    return voltage_current

@@ -13,13 +13,22 @@ def listComName(self):
         self.addItem(port, port)
 
 
+
 def listBaudRate(self):
     baudrate = [50, 75, 110, 134, 150, 200, 300, 600, 1200, 1800, 2400, 4800, 9600, 19200, 38400, 57600, 115200]
     self.clear()
     self.addItem('请选择', '')
     for baud in baudrate:
         self.addItem(str(baud), baud)
+    self.setCurrentIndex(17)
 
+def listBaudRatePower(self):
+    baudrate = [50, 75, 110, 134, 150, 200, 300, 600, 1200, 1800, 2400, 4800, 9600, 19200, 38400, 57600, 115200]
+    self.clear()
+    self.addItem('请选择', '')
+    for baud in baudrate:
+        self.addItem(str(baud), baud)
+    self.setCurrentIndex(13)
 
 def listStopBits(self):
     self.clear()
@@ -31,6 +40,7 @@ def listStopBits(self):
     }
     for key in sb:
         self.addItem(key, sb[key])
+    self.setCurrentIndex(1)
 
 
 def listDataBits(self):
@@ -44,6 +54,7 @@ def listDataBits(self):
     }
     for key in db:
         self.addItem(key, db[key])
+    self.setCurrentIndex(4)
 
 
 def listParity(self):
@@ -58,6 +69,7 @@ def listParity(self):
     }
     for key in p:
         self.addItem(key, p[key])
+    self.setCurrentIndex(1)
 
 
 def openButton(self, mainWindow):
@@ -87,6 +99,49 @@ def openButton(self, mainWindow):
                 self.setText('打开端口')
                 return
             result = mainWindow.Com.openCom(
+                port_name=com,
+                baud_rate=baud,
+                stop_bits=stop_bits,
+                parity=parity,
+                data_bits=data_bits
+            )
+            if result is True:
+                self.setEnabled(True)
+                self.setText('关闭端口')
+            if result is False:
+                self.setEnabled(False)
+                self.setText('打开串口')
+                QMessageBox.critical(self.parent(), '提示', '端口打开失败')
+    except Exception as e:
+        print(e)
+
+def openPowerButton(self, mainWindow):
+    try:
+        self.setDisabled(True)
+        flag = mainWindow.powerCom.isOpen()
+        if flag is True:
+            self.setText('关闭中')
+        else:
+            self.setText('打开中')
+
+        if flag is True:
+            if mainWindow.powerCom.closeCom() is False:
+                QMessageBox.warning(self.parent(), '提示', '关闭端口失败')
+            self.setEnabled(True)
+            self.setText('打开端口')
+        else:
+            com = mainWindow.calibComComboBox_power.currentData()
+            baud = mainWindow.calibBaudComboBox_power.currentData()
+            stop_bits = mainWindow.calibStopBitsComboBox_power.currentData()
+            parity = mainWindow.calibParityComboBox_power.currentData()
+            data_bits = mainWindow.calibDataBitsComboBox_power.currentData()
+            if com is None or baud is None or stop_bits is None or parity is None \
+                    or data_bits is None:
+                QMessageBox.critical(self.parent(), '提示', '端口信息错误')
+                self.setEnabled(True)
+                self.setText('打开端口')
+                return
+            result = mainWindow.powerCom.openCom(
                 port_name=com,
                 baud_rate=baud,
                 stop_bits=stop_bits,

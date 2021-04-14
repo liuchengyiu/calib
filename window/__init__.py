@@ -1,3 +1,6 @@
 from calib.window.mainWinow import Ui_MainWindow
 from calib.window.weightParamDialog import Ui_weightParamDialog
 from calib.window.voltageCurrentWeightParamDialog import Ui_voltageCurrentWeightParamDialog
+from calib.window.phaseCorrectionParamDialog import Ui_phaseCorrectionParamDialog
+from calib.window.subsectionParamDialog import Ui_subsectionParamDialog
+from calib.window.startPriceParamDialog import Ui_startPriceParamDialog

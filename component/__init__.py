@@ -2,3 +2,6 @@ from calib.component.comBoBox import HocCombobox
 from calib.component.pushButtion import HocPushButton
 from calib.component.weightParamDialog import My_WeightParamDialog
 from calib.component.voltageCurrentWeightParamDIalog import My_voltageCurrentWeightParamDialog
+from calib.component.phaseCorrectionParamDialog import My_phaseCorrectionParamDialog
+from calib.component.subsectionParamDialog import My_subsectionParamDialog
+from calib.component.startPriceParamDialog import My_startPriceParamDialog

@@ -6,9 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-# import sys, os
-# if hasattr(sys, 'frozen'):
-#     os.environ['PATH'] = sys._MEIPASS + ";" + os.environ['PATH']
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -28,10 +26,12 @@ class Ui_voltageCurrentWeightParamDialog(object):
         self.label_2.setObjectName("label_2")
         self.phaseAVoltageDoubleSpinBox = QtWidgets.QDoubleSpinBox(voltageCurrentWeightParamDialog)
         self.phaseAVoltageDoubleSpinBox.setGeometry(QtCore.QRect(70, 50, 62, 22))
+        self.phaseAVoltageDoubleSpinBox.setDecimals(4)
         self.phaseAVoltageDoubleSpinBox.setMaximum(999.0)
         self.phaseAVoltageDoubleSpinBox.setObjectName("phaseAVoltageDoubleSpinBox")
         self.phaseACurrentDoubleSpinBox = QtWidgets.QDoubleSpinBox(voltageCurrentWeightParamDialog)
         self.phaseACurrentDoubleSpinBox.setGeometry(QtCore.QRect(200, 50, 62, 22))
+        self.phaseACurrentDoubleSpinBox.setDecimals(4)
         self.phaseACurrentDoubleSpinBox.setMaximum(999.0)
         self.phaseACurrentDoubleSpinBox.setObjectName("phaseACurrentDoubleSpinBox")
         self.label_3 = QtWidgets.QLabel(voltageCurrentWeightParamDialog)
@@ -42,10 +42,12 @@ class Ui_voltageCurrentWeightParamDialog(object):
         self.label_5.setObjectName("label_5")
         self.phaseBVoltageDoubleSpinBox = QtWidgets.QDoubleSpinBox(voltageCurrentWeightParamDialog)
         self.phaseBVoltageDoubleSpinBox.setGeometry(QtCore.QRect(70, 80, 62, 22))
+        self.phaseBVoltageDoubleSpinBox.setDecimals(4)
         self.phaseBVoltageDoubleSpinBox.setMaximum(999.0)
         self.phaseBVoltageDoubleSpinBox.setObjectName("phaseBVoltageDoubleSpinBox")
         self.phaseBCurrentDoubleSpinBox = QtWidgets.QDoubleSpinBox(voltageCurrentWeightParamDialog)
         self.phaseBCurrentDoubleSpinBox.setGeometry(QtCore.QRect(200, 80, 62, 22))
+        self.phaseBCurrentDoubleSpinBox.setDecimals(4)
         self.phaseBCurrentDoubleSpinBox.setMaximum(999.0)
         self.phaseBCurrentDoubleSpinBox.setObjectName("phaseBCurrentDoubleSpinBox")
         self.label_7 = QtWidgets.QLabel(voltageCurrentWeightParamDialog)
@@ -56,10 +58,13 @@ class Ui_voltageCurrentWeightParamDialog(object):
         self.label_8.setObjectName("label_8")
         self.phaseCVoltageDoubleSpinBox = QtWidgets.QDoubleSpinBox(voltageCurrentWeightParamDialog)
         self.phaseCVoltageDoubleSpinBox.setGeometry(QtCore.QRect(70, 110, 62, 22))
+        self.phaseCVoltageDoubleSpinBox.setDecimals(4)
         self.phaseCVoltageDoubleSpinBox.setMaximum(999.0)
         self.phaseCVoltageDoubleSpinBox.setObjectName("phaseCVoltageDoubleSpinBox")
         self.phaseCCurrentDoubleSpinBox = QtWidgets.QDoubleSpinBox(voltageCurrentWeightParamDialog)
         self.phaseCCurrentDoubleSpinBox.setGeometry(QtCore.QRect(200, 110, 62, 22))
+        self.phaseCCurrentDoubleSpinBox.setDecimals(4)
+        self.phaseCCurrentDoubleSpinBox.setMaximum(999.0)
         self.phaseCCurrentDoubleSpinBox.setObjectName("phaseCCurrentDoubleSpinBox")
         self.label_10 = QtWidgets.QLabel(voltageCurrentWeightParamDialog)
         self.label_10.setGeometry(QtCore.QRect(10, 110, 54, 22))
