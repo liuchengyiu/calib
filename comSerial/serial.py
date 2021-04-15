@@ -121,7 +121,7 @@ def updateTable(com, row, line, frame, sub, percent):
 
 
 def deal00Frame(com, frame):
-    print('rx', frame, 'aaa=', frame[3])
+    # print('rx', frame, 'aaa=', frame[3])
     status = ""
     if frame[3] == 0:
         status = "已发送"

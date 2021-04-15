@@ -48,11 +48,11 @@ def serial_read(serial):
 def triphase_run(ser, send_list: list):
     serial_com= ser.com
     send_str= two_list_16(send_list);
-    print('power_send==', send_str);
+    # print('power_send==', send_str);
     serial_send(serial_com, bytes.fromhex(send_str));
     time.sleep(1);
     serial_read_data= serial_read(ser);
-    print('power_read==', serial_read_data)
+    # print('power_read==', serial_read_data)
     if not serial_read_data:
         print("无答应帧")
         return False

@@ -87,28 +87,17 @@ def runCaLib(ser_triphase, ser_jc, mainWindow):
     jc_run(ser_jc, {'temp': '25'}, 5, 1)
     jc_run(ser_jc, read_data, 6, 1)
 
-    jc_run(ser_jc, {'1': '0.075', '2': '0.015'}, 19, 1)  # 相位分段补偿设置
-    triphase_run(ser_triphase, send_tr_list[11])  # 0.5A
     triphase_run(ser_triphase, send_tr_list[4])  # 0.5L
     time.sleep(3)
     read_data = batebcd_to_int(triphase_run(ser_triphase, send_tr_list[5]))
     jc_run(ser_jc, read_data, 7, 0.5)  # 发送相位校正帧
 
-    triphase_run(ser_triphase, send_tr_list[12])  # 0.05A
-    time.sleep(3)
-    read_data = batebcd_to_int(triphase_run(ser_triphase, send_tr_list[5]))
-    jc_run(ser_jc, read_data, 7, 0.5)  # 发送相位校正帧
-
-    triphase_run(ser_triphase, send_tr_list[13])  # 0.01A
-    time.sleep(3)
-    read_data = batebcd_to_int(triphase_run(ser_triphase, send_tr_list[5]))
-    jc_run(ser_jc, read_data, 7, 0.5)  # 发送相位校正帧
     triphase_run(ser_triphase, send_tr_list[6])  # 开始功率校正
     time.sleep(3)
     read_data = batebcd_to_int(triphase_run(ser_triphase, send_tr_list[5]))
     if read_data == False or round(float(read_data["43"]), 3) != 0.075:
         return False
-    jc_run(ser_jc, read_data, 8, 0.5)
+    jc_run(ser_jc, read_data, 8, 0.5)  # 发送功率校正帧
     triphase_run(ser_triphase, send_tr_list[7])
     time.sleep(3)
     jc_run(ser_jc, {}, 9, 0.5)

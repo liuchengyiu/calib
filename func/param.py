@@ -14,9 +14,6 @@ def voltageCurrentGainParamShow(self, mainWindow):
     mainWindow.voltageCurrentWeightParamDialog.show()
 
 
-def subsectionParamShow(self, mainWindow):
-    mainWindow.subsectionParamDialog.show()
-
 def startPriceParamShow(self, mainWindow):
     mainWindow.startPriceParamDialog.show()
 

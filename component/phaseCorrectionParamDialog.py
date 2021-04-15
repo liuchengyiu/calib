@@ -10,7 +10,6 @@ class My_phaseCorrectionParamDialog(QtWidgets.QDialog, Ui_phaseCorrectionParamDi
         self.cancelPushButton.clicked.connect(self.close)
 
     def getValue(self) -> dict:
-        phase = self.weightPhaseSpinBox.value()
         mask = self.weightMaskSpinBox.value()
         phase_a = [
             self.phaseAVoltageDoubleSpinBox.value(),
@@ -27,4 +26,4 @@ class My_phaseCorrectionParamDialog(QtWidgets.QDialog, Ui_phaseCorrectionParamDi
             self.phaseCCurrentDoubleSpinBox.value(),
             self.phaseCPowerFactorDoubleSpinBox.value()
         ]
-        return {'phase': phase, 'mask': mask, 'phase_a': phase_a, 'phase_b': phase_b, 'phase_c': phase_c}
+        return {'mask': mask, 'phase_a': phase_a, 'phase_b': phase_b, 'phase_c': phase_c}

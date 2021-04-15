@@ -59,15 +59,6 @@ def dict_to_sixten(dict_data: dict, type, factor)-> str:
         data = trans_floats_to_bytes(data)
         data.insert(0, 7)  # 插入分量Mask
 
-        if type == 7 and round(float(dict_data['43']), 4) > 0.075:
-            data.insert(0, 1)
-        if type == 7 and 0.075 > round(float(dict_data['43']), 4) > 0.015:
-            data.insert(0, 2)
-        if type == 7 and 0.015 > round(float(dict_data['43']), 4):
-            data.insert(0, 3)
-    if type == 19:
-        data = [float(dict_data['1']), float(dict_data['2'])]
-        data = trans_floats_to_bytes(data)
     if type == 4:
         data = [float(dict_data['1']), float(dict_data['2'])]
         data = trans_floats_to_bytes(data)

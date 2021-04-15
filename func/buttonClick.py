@@ -16,7 +16,6 @@ def temperatureCalib(self, mainWindow):
 	try:
 		data = []
 		data.append(mainWindow.tempSpinBox.value())
-		print('=============================', data)
 		data = trans_floats_to_bytes(data)	#温度校准
 		frame = createFrame(105, 5, data, 67)
 		send_frame(frame, mainWindow)
@@ -37,34 +36,19 @@ def powerGainCompensation(self, mainWindow):
 		print(e)
 
 
-def subsection(self, mainWindow):
-	data = []
-	value = mainWindow.subsectionParamDialog.getValue()
-	data.append(value['Iregion0'])
-	data.append(value['Iregion1'])
-	data = trans_floats_to_bytes(data)
-	print('data====', data)
-	frame = createFrame(105, 19, data, 67)
-	send_frame(frame, mainWindow)
-
-
 def startPrice(self, mainWindow):
 	data = []
 	value = mainWindow.startPriceParamDialog.getValue()
 	data.append(value['electricity'])
 	data.append(value['power'])
 	data = trans_floats_to_bytes(data)
-	print('data====', data)
 	frame = createFrame(105, 4, data, 67)
 	send_frame(frame, mainWindow)
 
 
 def phaseCorrection(self, mainWindow):
-	print('====')
 	value = mainWindow.phaseCorrectionParamDialog.getValue()
-	print('mask==', value['mask'])
 	data = [value['mask']]
-	print('data=', data)
 	data.extend(trans_floats_to_bytes(value['phase_a']))
 	data.extend(trans_floats_to_bytes(value['phase_b']))
 	data.extend(trans_floats_to_bytes(value['phase_c']))

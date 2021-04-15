@@ -99,13 +99,6 @@ class Ui_phaseCorrectionParamDialog(object):
         self.cancelPushButton = QtWidgets.QPushButton(phaseCorrectionParamDialog)
         self.cancelPushButton.setGeometry(QtCore.QRect(240, 170, 75, 23))
         self.cancelPushButton.setObjectName("cancelPushButton")
-        self.weightPhaseSpinBox = QtWidgets.QSpinBox(phaseCorrectionParamDialog)
-        self.weightPhaseSpinBox.setGeometry(QtCore.QRect(230, 20, 61, 22))
-        self.weightPhaseSpinBox.setMaximum(999)
-        self.weightPhaseSpinBox.setObjectName("weightPhaseSpinBox")
-        self.label_11 = QtWidgets.QLabel(phaseCorrectionParamDialog)
-        self.label_11.setGeometry(QtCore.QRect(163, 20, 61, 22))
-        self.label_11.setObjectName("label_11")
 
         self.retranslateUi(phaseCorrectionParamDialog)
         QtCore.QMetaObject.connectSlotsByName(phaseCorrectionParamDialog)
@@ -125,4 +118,3 @@ class Ui_phaseCorrectionParamDialog(object):
         self.label_10.setText(_translate("phaseCorrectionParamDialog", "C相电压"))
         self.okPushButton.setText(_translate("phaseCorrectionParamDialog", "确定"))
         self.cancelPushButton.setText(_translate("phaseCorrectionParamDialog", "取消"))
-        self.label_11.setText(_translate("phaseCorrectionParamDialog", "相位校准区间"))

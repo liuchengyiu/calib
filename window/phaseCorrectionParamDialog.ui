@@ -326,32 +326,6 @@
     <string>取消</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="weightPhaseSpinBox">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>20</y>
-     <width>61</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="maximum">
-    <number>999</number>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_11">
-   <property name="geometry">
-    <rect>
-     <x>163</x>
-     <y>20</y>
-     <width>61</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>相位校准区间</string>
-   </property>
-  </widget>
  </widget>
  <resources/>
  <connections/>

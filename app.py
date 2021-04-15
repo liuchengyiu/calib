@@ -2,7 +2,7 @@ import sys, os
 if hasattr(sys, 'frozen'):
     os.environ['PATH'] = sys._MEIPASS + ";" + os.environ['PATH']
 from PyQt5 import QtWidgets
-from calib.component import HocCombobox, HocPushButton, My_WeightParamDialog, My_voltageCurrentWeightParamDialog, My_phaseCorrectionParamDialog, My_subsectionParamDialog, My_startPriceParamDialog
+from calib.component import HocCombobox, HocPushButton, My_WeightParamDialog, My_voltageCurrentWeightParamDialog, My_phaseCorrectionParamDialog, My_startPriceParamDialog
 import sys
 from calib.window import Ui_MainWindow
 from calib.func import *
@@ -21,7 +21,6 @@ class My_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.powerOffsetParamDialog = My_WeightParamDialog()
         self.voltageCurrentWeightParamDialog = My_voltageCurrentWeightParamDialog()
         self.phaseCorrectionParamDialog = My_phaseCorrectionParamDialog()
-        self.subsectionParamDialog = My_subsectionParamDialog()
         self.startPriceParamDialog = My_startPriceParamDialog()
         self.calibComComboBox = HocCombobox(self.calibComComboBox, beforeMousePressEvent=listComName)
         self.calibBaudComboBox = HocCombobox(self.calibBaudComboBox, beforeMousePressEvent=listBaudRate)
@@ -42,8 +41,6 @@ class My_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.powerOffsetParamPushButton, beforeClick=powerOffsetParamShow, MainWindow=self)
         self.voltageCurrentGainParamPushButton = HocPushButton(
             self.voltageCurrentGainParamPushButton, beforeClick=voltageCurrentGainParamShow, MainWindow=self)
-        self.subsectionParamPushButton = HocPushButton(
-            self.subsectionParamPushButton, beforeClick=subsectionParamShow, MainWindow=self)
         self.startPriceParamPushButton = HocPushButton(
             self.startPriceParamPushButton, beforeClick=startPriceParamShow, MainWindow=self)
         self.phaseCorrectionParamPushButton = HocPushButton(
@@ -66,8 +63,6 @@ class My_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.powerRmsPushButton, beforeClick=powerRms, MainWindow=self)
         self.voltageCurrentGainPushButton = HocPushButton(
             self.voltageCurrentGainPushButton, beforeClick=voltageCurrentGain, MainWindow=self)
-        self.subsectionPushButton = HocPushButton(
-            self.subsectionPushButton, beforeClick=subsection, MainWindow=self)
         self.startPricePushButton = HocPushButton(
             self.startPricePushButton, beforeClick=startPrice, MainWindow=self)
         self.readDataPushButton = HocPushButton(
